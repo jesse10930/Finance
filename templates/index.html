@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form action="/" method="post">
+        <p>
+            <h2>
+                Portfolio Summary
+            </h2>
+            <table align="center">
+                <tr>
+                    <th><u>Stock</u></th>
+                    <th><u>Quantity</u></th>
+                    <th><u>Current Price</u></th>
+                    <th><u>Total Value</u></th>
+                </tr>
+                {% for field in your_stocks %}
+                    <tr>
+                        <th>{{field.symbol}}</th>
+                        <th>{{field.quantities}}</th>
+                        <th>{{field.cur_price}}</th>
+                        <th>{{field.total_value}}</th>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div align="right">
+                Your Cash: {{your_cash}}
+            </div>
+            <div align="right">
+                Total Value: {{your_val}}
+            </div>
+            <div class="form-group" align="right">
+                <select class="form-control" name="symbol">
+                    <option>Select Stock</option>
+                    {% for entry in your_symbols %}
+                        <option>{{entry}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" align="right">
+                <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Quantity" type="number"/>
+            </div>
+            <div align="right">
+                <button class="btn btn-primary" type="submit" formaction="{{url_for("buy")}}" formmethod="post">Buy</button>
+                <button class="btn btn-primary" type="submit" formaction="{{url_for("sell")}}" formmethod="post">Sell</button>
+            </div>
+        </p>
+    </form>
+{% endblock %}

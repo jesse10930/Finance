@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <p>
+        <h2>
+            Transaction History
+        </h2>
+        <table align="center">
+            <tr>
+                <th><u>Stock</u></th>
+                <th><u>Price Per</u></th>
+                <th><u>Quantity</u></th>
+                <th><u>Bought/Sold</u></th>
+                <th><u>Total</u></th>
+                <th><u>Date</u></th>
+            </tr>
+            {% for row in your_trans %}
+                <tr>
+                    <th>{{row.symbol}}</th>
+                    <th>{{row.price_per}}</th>
+                    <th>{{row.quantity}}</th>
+                    <th>{{row.direction}}</th>
+                    <th>{{row.total}}</th>
+                    <th>{{row.Date}}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    </p>
+{% endblock %}
